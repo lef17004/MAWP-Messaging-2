@@ -11,13 +11,8 @@ function loadMessages(conversationId, recieverId) {
       
       document.querySelector("#send").addEventListener("click", function(){
         send(conversationId, recieverId)
+        db.collection("conversations").doc("conversationId").collection()
       })
-      
-      
-      db.collection("conversations").doc(conversationId)
-        .onSnapshot(function(doc) {
-            console.log("Current data: ", doc.data());
-        });
       
     })
 }
@@ -31,3 +26,8 @@ function send(conversationId, recieverId) {
   
   backendSendMessage(auth.currentUser.uid, recieverId, conversationId, text)
 }
+
+db.collection("conversations")
+        .onSnapshot(function(doc) {
+            console.log("Current data: ", doc);
+        });
