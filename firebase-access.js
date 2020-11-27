@@ -64,6 +64,7 @@ function backendLoadConversations(id, callbackFunc) {
       else {
         otherId = conversation.data().userIds[0]
       }
+      conversations.push("apples")
       getEmailFrom(otherId, function(email) {
         conversations.push({email: email, conversationId: conversation.data().id})
       })
