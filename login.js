@@ -7,7 +7,7 @@ function getForm() {
 function login() {
   backendLogin(getForm().email, getForm().password, function(success, error) {
     if (success) {
-      loadConversations()
+      segueToConversations(auth.currentUser.uid)
     }
     else {
       alert(error)
