@@ -1,6 +1,6 @@
 
 
-function loadMessages(conversationId) {
+function loadMessages(conversationId, recieverId) {
     backendGetMessages(conversationId, function(result) {
       console.log(result)
       result.forEach(function(message) {
@@ -9,7 +9,9 @@ function loadMessages(conversationId) {
         document.querySelector("#list").appendChild(messageBox)
       })
       
-      
+      document.querySelector("#send").addEventListener("click", function(){
+        send(recieverId)
+      })
       
     })
 }
@@ -20,4 +22,5 @@ function loadMessages(conversationId) {
 function send(recieverId) {
   const text = document.querySelector("#send").value
   document.querySelector("#send").value = ""
+  backendSendMessage(senderId, recieverId, conversationId, text)
 }

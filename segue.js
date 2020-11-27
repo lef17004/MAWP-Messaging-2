@@ -12,13 +12,13 @@ function segueToConversations(id) {
   xhttp.send();
 }
 
-function segueToMessages(conversationId) {
+function segueToMessages(conversationId, recieverId) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("body").innerHTML =
       this.responseText;
-      loadMessages(conversationId)
+      loadMessages(conversationId, recieverId)
     }
   };
   xhttp.open("GET", "messages.html", true);

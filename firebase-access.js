@@ -67,7 +67,7 @@ function backendLoadConversations(id, callbackFunc) {
       }
       
       getEmailFrom(otherId, function(email) {
-        callbackFunc({email: email, conversationId: conversation.data().id})
+        callbackFunc({email: email, conversationId: conversation.data().id, recieverId: otherId})
         
       })
       
