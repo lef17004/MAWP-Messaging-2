@@ -1,3 +1,5 @@
+
+
 function loadMessages(conversationId) {
     backendGetMessages(conversationId, function(result) {
       console.log(result)
@@ -7,5 +9,15 @@ function loadMessages(conversationId) {
         document.querySelector("#list").appendChild(messageBox)
       })
       
+      
+      
     })
+}
+
+
+
+
+function send(recieverId) {
+  const text = document.querySelector("#send").value
+  document.querySelector("#send").value = ""
 }
