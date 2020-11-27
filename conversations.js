@@ -1,4 +1,5 @@
 function startConversation() {
+  const recieverEmail = prompt("Email: ")
   
 }
 
