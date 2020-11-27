@@ -8,9 +8,10 @@
     3. backendSignup
     4. calculateConversationId
     5. doesConversationExist
-    6. getIdFrom *There was a mistake with the naming of this one. It will be fixed soon.* 
-    7. isUserSignedIn
-    8. setUpConversation
+    6. getIdFrom 
+    7. getEmailFrom
+    8. isUserSignedIn
+    9. setUpConversation
     
     
 
@@ -51,7 +52,10 @@ function backendGetMessages(conversationId, callbackFunc) {
   })
 }
 
-
+function backendLoadConversations(id, callbackFunc) {
+  let conversations = []
+  db.collection("conversations").where("userIds", "array-contains-any" , [currentUserId]))
+}
 
 //------------------------------------------------------------------------------------
 
@@ -141,7 +145,7 @@ function getIdFrom(email, callbackFunc) {
   .then(function (queryResults) {
     let empty = true
     queryResults.forEach(function(doc) {
-      callbackFunc(doc.id)
+      callbackFunc(doc.data().id)
       empty = false
     })
     if (empty == true) {
@@ -153,6 +157,17 @@ function getIdFrom(email, callbackFunc) {
 
 function getEmailFrom(id, callbackFunc) {
   var query = db.collection("users").where("id", "==", id)
+  .get()
+  .then(function(queryResults) {
+    let empty = true
+    queryResults.forEach(function(doc) {
+      callbackFunc(doc.data().email)
+      empty = false
+    })
+    if (empty == true) {
+      callbackFunc(false)
+    }
+  })
 }
 
 
