@@ -52,8 +52,8 @@ function backendGetMessages(conversationId, callbackFunc) {
   })
 }
 
+//This will call the callbackFunc for each conversation 
 function backendLoadConversations(id, callbackFunc) {
-  let conversations = []
   db.collection("conversations").where("userIds", "array-contains-any" , [id]).get()
   .then(function(results){
     results.forEach(function(conversation) {
@@ -64,12 +64,16 @@ function backendLoadConversations(id, callbackFunc) {
       else {
         otherId = conversation.data().userIds[0]
       }
-      conversations.push("apples")
+      
       getEmailFrom(otherId, function(email) {
-        conversations.push({email: email, conversationId: conversation.data().id})
+        callbackFunc({email: email, conversationId: conversation.data().id})
+        
       })
+      
+      
     })
-    callbackFunc(conversations)
+    
+    
   })
 }
 
