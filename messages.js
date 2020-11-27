@@ -10,7 +10,7 @@ function loadMessages(conversationId, recieverId) {
       })
       
       document.querySelector("#send").addEventListener("click", function(){
-        send(recieverId)
+        send(conversationId, recieverId)
       })
       
     })
@@ -19,8 +19,9 @@ function loadMessages(conversationId, recieverId) {
 
 
 
-function send(recieverId) {
-  const text = document.querySelector("#send").value
-  document.querySelector("#send").value = ""
-  backendSendMessage(senderId, recieverId, conversationId, text)
+function send(conversationId, recieverId) {
+  const text = document.querySelector("#text").value
+  document.querySelector("#text").value = ""
+  
+  backendSendMessage(auth.currentUser.uid, recieverId, conversationId, text)
 }
