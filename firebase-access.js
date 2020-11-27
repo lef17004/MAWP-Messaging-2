@@ -34,9 +34,10 @@ function backendSendMessage(senderId, recieverId, conversationId, text) {
 }
 
 
-//calls callback for every 
+
 function backendGetMessages(conversationId, callbackFunc) {
   db.collection("conversations").doc(conversationId).collection("messages").orderBy("timestamp").get().then(function(results){
+    let messageList = []
     results.forEach(function(doc) {
       let message = {
         text: doc.data().text,
@@ -44,11 +45,10 @@ function backendGetMessages(conversationId, callbackFunc) {
         senderId: doc.data().senderId,
         recieverId: doc.data().recieverId
       }
-      callbackFunc(message)
+      messageList.push(message)
       
     })
-    
-    
+    callbackFunc(messageList)
   })
 }
 
