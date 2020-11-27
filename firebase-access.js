@@ -57,8 +57,18 @@ function backendLoadConversations(id, callbackFunc) {
   db.collection("conversations").where("userIds", "array-contains-any" , [id]).get()
   .then(function(results){
     results.forEach(function(conversation) {
-      console.log(conversation.data())
+      let otherId
+      if (id == conversation.data().userIds[0]) {
+        otherId = conversation.data().userIds[1]
+      }
+      else {
+        otherId = conversation.data().userIds[0]
+      }
+      getEmailFrom(otherId, function(email) {
+        conversations.push({email: email, conversationId: conversation.data().id})
+      })
     })
+    callbackFunc(conversations)
   })
 }
 
