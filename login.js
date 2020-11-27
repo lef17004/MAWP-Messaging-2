@@ -18,7 +18,7 @@ function login() {
 function signup() {
   backendSignup(getForm().email, getForm().password, function(success, error) {
     if (success) {
-      loadConversations()
+      login()
     }
     else {
       alert(error)

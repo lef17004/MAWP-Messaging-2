@@ -150,6 +150,12 @@ function getIdFrom(email, callbackFunc) {
   })
 }
 
+
+function getEmailFrom(id, callbackFunc) {
+  var query = db.collection("users").where("id", "==", id)
+}
+
+
 function isUserSignedIn() {
   return !!auth.currentUser;
 }
