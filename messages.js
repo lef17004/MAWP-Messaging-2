@@ -11,10 +11,13 @@ function loadMessages(conversationId, recieverId) {
       
       document.querySelector("#send").addEventListener("click", function(){
         send(conversationId, recieverId)
-        db.collection("conversations").doc(conversationId).update({
-          update: false
-        })
+        
       })
+      
+      db.collection("conversations").doc(conversationId)
+        .onSnapshot(function(doc) {
+            segueToMessages(conversationId, recieverId)
+        });
       
     })
 }
@@ -24,12 +27,12 @@ function loadMessages(conversationId, recieverId) {
 
 function send(conversationId, recieverId) {
   const text = document.querySelector("#text").value
-  document.querySelector("#text").value = ""
   
   backendSendMessage(auth.currentUser.uid, recieverId, conversationId, text)
+  
+  document.querySelector("#text").value = ""
+  db.collection("conversations").doc(conversationId).update({
+          update: true
+  })
 }
 
-db.collection("conversations").doc("IGajVQWy15gTxiFtaZ2HdlRo4Cx1XZDVCzIoQUg9OC7uQFowjflINAV2")
-        .onSnapshot(function(doc) {
-            console.log("Current data: ", doc.data());
-        });

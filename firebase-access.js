@@ -31,6 +31,9 @@ function backendSendMessage(senderId, recieverId, conversationId, text) {
     receiverId: recieverId,
     text: text
   }) 
+  db.collection("conversations").doc(conversationId).update({
+    timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+  })
 }
 
 
