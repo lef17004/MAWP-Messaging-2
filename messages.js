@@ -13,6 +13,12 @@ function loadMessages(conversationId, recieverId) {
         send(conversationId, recieverId)
       })
       
+      
+      db.collection("conversations").doc(conversationId)
+        .onSnapshot(function(doc) {
+            console.log("Current data: ", doc.data());
+        });
+      
     })
 }
 
