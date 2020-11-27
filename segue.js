@@ -18,9 +18,9 @@ function segueToMessages(conversationId) {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("body").innerHTML =
       this.responseText;
-      loadConversations(id)
+      loadMessages(conversationId)
     }
   };
-  xhttp.open("GET", "conversations.html", true);
+  xhttp.open("GET", "messages.html", true);
   xhttp.send();
 }
