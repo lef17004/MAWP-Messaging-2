@@ -1,8 +1,11 @@
 
 
 function loadMessages(conversationId, recieverId) {
+  
+  db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
+    document.querySelector("#list").innerHTML = ""  
+    
     backendGetMessages(conversationId, function(result) {
-      console.log(result)
       result.forEach(function(message) {
         let messageBox = document.createElement("P")
         messageBox.innerHTML = message.text
@@ -10,16 +13,12 @@ function loadMessages(conversationId, recieverId) {
       })
       
       document.querySelector("#send").addEventListener("click", function(){
-        send(conversationId, recieverId)
-        
+        send(conversationId, recieverId) 
       })
-      
-      db.collection("conversations").doc(conversationId)
-        .onSnapshot(function(doc) {
-            segueToMessages(conversationId, recieverId)
-        });
-      
     })
+    
+    
+  });  
 }
 
 
