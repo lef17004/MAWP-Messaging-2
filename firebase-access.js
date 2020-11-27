@@ -54,7 +54,12 @@ function backendGetMessages(conversationId, callbackFunc) {
 
 function backendLoadConversations(id, callbackFunc) {
   let conversations = []
-  db.collection("conversations").where("userIds", "array-contains-any" , [currentUserId]))
+  db.collection("conversations").where("userIds", "array-contains-any" , [id]).get()
+  .then(function(results){
+    results.forEach(function(conversation) {
+      console.log(conversation.data())
+    })
+  })
 }
 
 //------------------------------------------------------------------------------------

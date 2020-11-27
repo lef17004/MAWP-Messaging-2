@@ -1,7 +1,7 @@
 function test() {
-  const id = "Mdz4BQKskaclysnldYrnggmisIc2"
+  const id = "XZDVCzIoQUg9OC7uQFowjflINAV2"
   
-  getEmailFrom(id, function(value) {
-    alert(value)
+  backendLoadConversations(id, function(result) {
+    
   })
 }
