@@ -54,6 +54,7 @@ function backendGetMessages(conversationId, callbackFunc) {
 
 //This will call the callbackFunc for each conversation 
 function backendLoadConversations(id, callbackFunc) {
+  console.log("BackendLoadConversations")
   db.collection("conversations").where("userIds", "array-contains-any" , [id]).get()
   .then(function(results){
     results.forEach(function(conversation) {
