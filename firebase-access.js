@@ -1,0 +1,173 @@
+//Functions that Communicate with Firebase
+
+/*
+                Table of Contents
+    0. Functions that are in progress
+    1. backendCreateConversation
+    2. backendLogin
+    3. backendSignup
+    4. calculateConversationId
+    5. doesConversationExist
+    6. getIdFrom *There was a mistake with the naming of this one. It will be fixed soon.* 
+    7. isUserSignedIn
+    8. setUpConversation
+    
+    
+
+*/
+
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth()
+let db = firebase.firestore();
+
+//--------------------------------------------------------------------------------
+//In progress
+function backendSendMessage(senderId, recieverId, conversationId, text) {
+  db.collection("conversations").doc(conversationId).collection("messages").add({
+    timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+    senderId: senderId,
+    receiverId: recieverId,
+    text: text
+  }) 
+}
+
+
+
+function backendGetMessages(conversationId, callbackFunc) {
+  db.collection("conversations").doc(conversationId).collection("messages").orderBy("timestamp").get().then(function(results){
+    let messageList = []
+    results.forEach(function(doc) {
+      let message = {
+        text: doc.data().text,
+        time: doc.data().timestamp.toDate(),
+        senderId: doc.data().senderId,
+        recieverId: doc.data().recieverId
+      }
+      messageList.push(message)
+      
+    })
+    callbackFunc(messageList)
+  })
+}
+
+
+
+//------------------------------------------------------------------------------------
+
+
+function backendCreateConversation(senderId, recieverEmail, callbackFunc) {
+  //returns true or false via callback
+  getIdFrom(recieverEmail, function(recieverId) {
+    calculateConversationId(senderId, recieverId, function(conversationId) {
+      doesConversationExist(conversationId, function(conversationExists) {
+        if (!conversationExists) {
+          setUpConversation(senderId, recieverId, conversationId)
+          callbackFunc(true)
+        }
+        else {
+          callbackFunc(false)
+        }
+      })
+    })
+  })
+}
+
+
+function backendLogin(email, password, callbackFunc) {
+  console.log("backend login")
+  //Calback return bool and string
+  auth.signInWithEmailAndPassword(email, password)
+    .then(function(user) {
+      callbackFunc(true, "No Error")
+    })
+    .catch(function(error){
+      callbackFunc(false, error.code + "\n" + error.message)
+    })
+}
+
+
+function backendSignup(email, password, callbackFunc) {
+  //Callback return bool and error message 
+  auth.createUserWithEmailAndPassword(email, password)
+  .then(function(){
+    backendLogin(email, password, function() {
+      const uid = auth.currentUser.uid
+      db.collection("users").doc(uid).set({
+        id: uid,
+        email: email,
+        conversation_refs: []
+      })
+      callbackFunc(true, "No Error")
+    })
+    
+  })
+  .catch(function(error) {
+    callbackFunc(false, error.code + "\n" + error.message)
+  });
+  
+}
+
+
+function calculateConversationId(senderId, recieverId, callbackFunc) {
+  //calls the callback with the conversation id
+  let conversationId = ""
+  if (senderId < recieverId) {
+    conversationId = senderId + recieverId
+  }
+  else {
+    conversationId = recieverId + senderId 
+  }
+  callbackFunc(conversationId)
+}
+
+
+function doesConversationExist(conversationId, callbackFunc) {
+  //returns via callback. True if exists, false if it doesn't 
+  db.collection("conversations").doc(conversationId).get().then(function(doc){
+    if (doc.exists) {
+      callbackFunc(true)
+    }
+    else {
+      callbackFunc(false)
+    }
+  })
+}
+
+function getIdFrom(email, callbackFunc) {
+  //callback returns id if found, false if not found 
+  var query = db.collection("users").where("email", "==", email)
+  .get()
+  .then(function (queryResults) {
+    let empty = true
+    queryResults.forEach(function(doc) {
+      callbackFunc(doc.id)
+      empty = false
+    })
+    if (empty == true) {
+      callbackFunc(false)
+    }
+  })
+}
+
+function isUserSignedIn() {
+  return !!auth.currentUser;
+}
+
+function setUpConversation(senderId, recieverId, conversationId) {
+  db.collection("conversations").doc(conversationId).set({
+        id: conversationId,
+        userIds: [senderId, recieverId],
+        isRead: true,
+  })
+}
+
+
+
+
+ 
+
+
+
+
+
