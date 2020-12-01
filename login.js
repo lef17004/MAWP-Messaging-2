@@ -1,6 +1,6 @@
 function getForm() {
   return {email: document.querySelector("#email").value, 
-          password: document.querySelector("#password").value}
+          password: document.querySelector("#psw").value}
 }
 
 
