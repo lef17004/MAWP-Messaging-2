@@ -1,7 +1,44 @@
-<button onclick="startConversation()">
-  New Conversation
-</button>
-
-<div id="list">
-  
+<link href="conversations.css" rel="stylesheet" id="bootstrap-css" />
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous"
+/>
+<link href="test.js"/>
+<div class="card-header">
+  <div class="input-group">
+    <input
+      type="text"
+      placeholder="Search..."
+      name=""
+      class="form-control search"
+    />
+    <div class="input-group-prepend">
+      <span class="input-group-text search_btn"
+        ><i class="fas fa-search"></i
+      ></span>
+    </div>
+  </div>
+</div>
+<div class="card-body contacts_body">
+  <ui class="contacts">
+    <li>
+      <a href="https://www.google.com/">
+        <div class="d-flex bd-highlight">
+          <div class="img_cont">
+            <img
+              src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+              class="rounded-circle user_img"
+            />
+            <span class="online_icon"></span>
+          </div>
+          <div class="user_info">
+            <span>Ya Boi</span>
+            <p>Ya Boi is online</p>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ui>
 </div>
