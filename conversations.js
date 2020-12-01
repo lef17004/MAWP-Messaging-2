@@ -7,13 +7,13 @@ function startConversation() {
 
 function loadConversations(id) {
    backendLoadConversations(id, function(result) {
-      let conversation = document.createElement("Button")
-      conversation.addEventListener("click", function(){
-        segueToMessages(result.conversationId, result.recieverId)
-      })
-      conversation.innerHTML = result.email
-      document.querySelector("#list").appendChild(conversation)
-      document.querySelector("#list").appendChild(document.createElement("br"))
+      // let conversation = document.createElement("Button")
+      // conversation.addEventListener("click", function(){
+      //   segueToMessages(result.conversationId, result.recieverId)
+      // })
+      // conversation.innerHTML = result.email
+      // document.querySelector("#list").appendChild(conversation)
+      // document.querySelector("#list").appendChild(document.createElement("br"))
      
      let conv = document.createElement("DIV")
      conv.className = "d-flex bd-highlight"
@@ -25,23 +25,33 @@ function loadConversations(id) {
      image.src = "https://i.pinimg.com/564x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
      image.className = "rounded-circle user_img"
      
-     let span1 = document.CreateElement("SPAN")
+     let span1 = document.createElement("SPAN")
      span1.className = "online_icon"
      
-     let userInfo = document.CreateElement("DIV")
+     let userInfo = document.createElement("DIV")
      userInfo.className = "user_info"
      
      let span2 = document.createElement("SPAN")
-     span2.innerHTML = "Michael"
+     span2.innerHTML = result.email
      
      let p = document.createElement("P")
-     p.innerHTML = "Michael is online"
+     p.innerHTML = "Online __ Minutes ago"
      
+     
+     let link = document.createElement("A")
+     let list = document.createElement("LI")
      
      userInfo.appendChild(span2)
      userInfo.appendChild(p)
      
+     lev2.appendChild(image)
+     lev2.appendChild(span1)
      
+     conv.appendChild(lev2)
+     conv.appendChild(userInfo)
+     link.appendChild(conv)
+     list.appendChild(link)
+     document.querySelector("#list").appendChild(list)
      
     })
 }
