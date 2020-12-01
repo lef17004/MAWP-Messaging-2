@@ -8,18 +8,16 @@ function startConversation() {
 function loadConversations(id) {
    backendLoadConversations(id, function(result) {
       // let conversation = document.createElement("Button")
-      // conversation.addEventListener("click", function(){
-      //   segueToMessages(result.conversationId, result.recieverId)
-      // })
+      
       // conversation.innerHTML = result.email
       // document.querySelector("#list").appendChild(conversation)
       // document.querySelector("#list").appendChild(document.createElement("br"))
      
-     let conv = document.createElement("DIV")
-     conv.className = "d-flex bd-highlight"
+     let mainDiv = document.createElement("DIV")
+     mainDiv.className = "d-flex bd-highlight"
      
-     let lev2 = document.createElement("DIV")
-     lev2.className = "img_cont"
+     let secondDiv = document.createElement("DIV")
+     secondDiv.className = "img_cont"
      
      let image = document.createElement("IMG")
      image.src = "https://i.pinimg.com/564x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
@@ -28,8 +26,8 @@ function loadConversations(id) {
      let span1 = document.createElement("SPAN")
      span1.className = "online_icon"
      
-     let userInfo = document.createElement("DIV")
-     userInfo.className = "user_info"
+     let userInfoDiv = document.createElement("DIV")
+     userInfoDiv.className = "user_info"
      
      let span2 = document.createElement("SPAN")
      span2.innerHTML = result.email
@@ -38,20 +36,27 @@ function loadConversations(id) {
      p.innerHTML = "Online __ Minutes ago"
      
      
+     
+     let startOfListing = document.createElement("LI")
      let link = document.createElement("A")
-     let list = document.createElement("LI")
      
-     userInfo.appendChild(span2)
-     userInfo.appendChild(p)
+     userInfoDiv.appendChild(span2)
+     userInfoDiv.appendChild(p)
      
-     lev2.appendChild(image)
-     lev2.appendChild(span1)
+     secondDiv.appendChild(image)
+     secondDiv.appendChild(span1)
      
-     conv.appendChild(lev2)
-     conv.appendChild(userInfo)
-     link.appendChild(conv)
-     list.appendChild(link)
-     document.querySelector("#list").appendChild(list)
+     mainDiv.appendChild(secondDiv)
+     mainDiv.appendChild(userInfoDiv)
+     
+     link.appendChild(mainDiv)
+     startOfListing.appendChild(link)
+     
+     startOfListing.addEventListener("click", function(){
+        segueToMessages(result.conversationId, result.recieverId)
+     })
+     
+     document.querySelector("#list").appendChild(startOfListing)
      
     })
 }
