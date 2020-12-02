@@ -5,7 +5,7 @@ function startConversation() {
   })
 }
 
-function loadConversations(id) {
+function loadConversations(id, senderEmail) {
    backendLoadConversations(id, function(result) {
       // let conversation = document.createElement("Button")
       
@@ -53,7 +53,7 @@ function loadConversations(id) {
      startOfListing.appendChild(link)
      
      startOfListing.addEventListener("click", function(){
-        segueToMessages(result.conversationId, result.recieverId)
+        segueToMessages(result.conversationId, result.recieverId, senderEmail, result.email)
      })
      
      document.querySelector("#list").appendChild(startOfListing)
@@ -62,16 +62,3 @@ function loadConversations(id) {
 }
 
 
-// <div class="d-flex bd-highlight">
-//           <div class="img_cont">
-//             <img
-//               src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
-//               class="rounded-circle user_img"
-//             />
-//             <span class="online_icon"></span>
-//           </div>
-//           <div class="user_info">
-//             <span>Ya Boi</span>
-//             <p>Ya Boi is online</p>
-//           </div>
-//         </div>

@@ -1,16 +1,20 @@
 
 
-function loadMessages(conversationId, recieverId) {
+function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
   
   //db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
     document.querySelector("#list").innerHTML = ""  
-    
+    console.log(senderEmail)
+    console.log(recieverEmail)
     backendGetMessages(conversationId, function(result) {
       result.forEach(function(message) {
         console.log(message)
         let messageBox = document.createElement("SPAN")
-        messageBox.className = "u1 chat"
+        
         messageBox.innerHTML = message.text
+        
+        if (recieverId == result.recieverId)
+        messageBox.className = "u1 chat"
   
         document.querySelector("#list").appendChild(messageBox)
       })
