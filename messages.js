@@ -13,14 +13,19 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
         
         messageBox.innerHTML = message.text
         
-        if (recieverId == result.recieverId)
-        messageBox.className = "u1 chat"
+        if (recieverId == result.recieverId) {
+          messageBox.className = "u1 chat"
+        }
+        else {
+          messageBox.className = "u2 chat"
+        }
+        
   
         document.querySelector("#list").appendChild(messageBox)
       })
       
       document.querySelector("#send").addEventListener("click", function(){
-        send(conversationId, recieverId) 
+        send(conversationId, recieverId, senderEmail, recieverEmail) 
       })
     })
     
@@ -31,14 +36,14 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
 
 
 
-function send(conversationId, recieverId) {
-  const text = document.querySelector("#text").value
-  
+function send(conversationId, recieverId, senderEmail, recieverEmail) {
+  const text = document.querySelector("#message").value
+  if (text == "") {
+    return
+  }
   backendSendMessage(auth.currentUser.uid, recieverId, conversationId, text)
   
   document.querySelector("#text").value = ""
-  db.collection("conversations").doc(conversationId).update({
-          update: true
-  })
+  loadMessages(conversationId, recieverId, senderEmail, recieverEmail)
 }
 
