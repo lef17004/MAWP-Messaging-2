@@ -37,7 +37,7 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
 
 
 function send(conversationId, recieverId, senderEmail, recieverEmail) {
-  const text = document.querySelector("#message").value
+  const text = document.querySelector("#text").value
   if (text == "") {
     return
   }
