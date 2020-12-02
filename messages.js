@@ -2,19 +2,17 @@
 
 function loadMessages(conversationId, recieverId) {
   
-  db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
+  //db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
     document.querySelector("#list").innerHTML = ""  
     
     backendGetMessages(conversationId, function(result) {
       result.forEach(function(message) {
+        console.log(message)
         let messageBox = document.createElement("SPAN")
         messageBox.className = "u1 chat"
         messageBox.innerHTML = message.text
-        
-        let list = document.createElement("LI")
-        list.appendChild(messageBox)
-        
-        document.querySelector("#list").appendChild(list)
+  
+        document.querySelector("#list").appendChild(messageBox)
       })
       
       document.querySelector("#send").addEventListener("click", function(){
@@ -23,7 +21,7 @@ function loadMessages(conversationId, recieverId) {
     })
     
     
-  });  
+  //});  
 }
 
 

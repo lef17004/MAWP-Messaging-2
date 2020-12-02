@@ -46,7 +46,7 @@ function backendGetMessages(conversationId, callbackFunc) {
         text: doc.data().text,
         time: doc.data().timestamp.toDate(),
         senderId: doc.data().senderId,
-        recieverId: doc.data().recieverId
+        recieverId: doc.data().receiverId
       }
       messageList.push(message)
       
