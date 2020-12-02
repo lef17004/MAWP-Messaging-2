@@ -8,5 +8,5 @@ Todo
 - Images 
 - Word Filter
 - Error Checking 
-- 
+- Sort Conversations 
 
