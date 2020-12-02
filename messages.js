@@ -7,9 +7,14 @@ function loadMessages(conversationId, recieverId) {
     
     backendGetMessages(conversationId, function(result) {
       result.forEach(function(message) {
-        let messageBox = document.createElement("P")
+        let messageBox = document.createElement("SPAN")
+        messageBox.className = "u1 chat"
         messageBox.innerHTML = message.text
-        document.querySelector("#list").appendChild(messageBox)
+        
+        let list = document.createElement("LI")
+        list.appendChild(messageBox)
+        
+        document.querySelector("#list").appendChild(list)
       })
       
       document.querySelector("#send").addEventListener("click", function(){
