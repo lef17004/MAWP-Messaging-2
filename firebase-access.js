@@ -58,7 +58,7 @@ function backendGetMessages(conversationId, callbackFunc) {
 //This will call the callbackFunc for each conversation 
 function backendLoadConversations(id, callbackFunc) {
   console.log("BackendLoadConversations")
-  db.collection("conversations").orderBy("timestamp").where("userIds", "array-contains-any" , [id]).get()
+  db.collection("conversations").orderBy("timestamp", "desc").where("userIds", "array-contains-any" , [id]).get()
   .then(function(results){
     results.forEach(function(conversation) {
       let otherId
