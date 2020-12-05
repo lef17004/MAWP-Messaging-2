@@ -9,9 +9,11 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
     backendGetMessages(conversationId, function(result) {
       result.forEach(function(message) {
         console.log(message)
-        let messageBox = document.createElement("SPAN")
+        let messageBox = document.createElement("DIV")
+        messageBox.className = "container"
         
-        messageBox.innerHTML = message.text
+        
+        messageBox.innerHTML = "<p>"
         
         if (recieverId == result.recieverId) {
           messageBox.className = "u1 chat"
