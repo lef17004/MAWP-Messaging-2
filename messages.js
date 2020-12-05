@@ -15,8 +15,7 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
         messageBox.className = "container"
         
         
-        let time = firebase.firestore.Timestamp.fromDate(message.time)
-        time = time.getUTCHours();
+        let time = message.time//toDate()//.getHours() + 1
         
         
         
