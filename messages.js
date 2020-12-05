@@ -9,7 +9,50 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
     console.log(recieverEmail)
     backendGetMessages(conversationId, function(result) {
       result.forEach(function(message) {
-        console.log(message)
+        createMessage(message, recieverId)
+      })
+      
+      console.log(result[result.length - 1])
+      
+      
+      document.querySelector("#send").addEventListener("click", function(){
+        send(conversationId, recieverId, senderEmail, recieverEmail) 
+      })
+      
+      document.querySelector("#back").addEventListener("click", function(){
+        segueToConversations(auth.currentUser.uid, senderEmail)
+      })
+      
+      
+      db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
+        backendGetMessages(conversationId, function(result) {
+          createMessage(result[], recieverId)
+        })
+      })
+      
+    })
+
+    
+  //});  
+}
+
+
+
+
+function send(conversationId, recieverId, senderEmail, recieverEmail) {
+  const text = document.querySelector("#text").value
+  if (text == "") {
+    return
+  }
+  backendSendMessage(auth.currentUser.uid, recieverId, conversationId, text)
+  
+  document.querySelector("#text").value = ""
+  loadMessages(conversationId, recieverId, senderEmail, recieverEmail)
+}
+
+
+function createMessage(message, recieverId) {
+  console.log(message)
         let messageBox = document.createElement("DIV")
         let timeBox = document.createElement("DIV")
         
@@ -43,39 +86,4 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       
         document.querySelector("#list").appendChild(messageBox)
         document.querySelector("#list").appendChild(timeBox)
-      })
-      
-      console.log(result[result.length - 1])
-      db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
-        
-        
-      }
-      
-      document.querySelector("#send").addEventListener("click", function(){
-        send(conversationId, recieverId, senderEmail, recieverEmail) 
-      })
-      
-      document.querySelector("#back").addEventListener("click", function(){
-        segueToConversations(auth.currentUser.uid, senderEmail)
-      })
-      
-    })
-
-    
-  //});  
 }
-
-
-
-
-function send(conversationId, recieverId, senderEmail, recieverEmail) {
-  const text = document.querySelector("#text").value
-  if (text == "") {
-    return
-  }
-  backendSendMessage(auth.currentUser.uid, recieverId, conversationId, text)
-  
-  document.querySelector("#text").value = ""
-  loadMessages(conversationId, recieverId, senderEmail, recieverEmail)
-}
-
