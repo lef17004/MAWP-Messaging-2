@@ -27,7 +27,7 @@ password: testing000
 
 Michael
 -------
-- JS for Back Button
+- JS for Back Button - Done
 - Reloaded Messages 
 - Time since log in
 - Search Bar
