@@ -21,6 +21,6 @@ function segueToMessages(conversationId, recieverId, senderEmail, recieverEmail)
       loadMessages(conversationId, recieverId, senderEmail, recieverEmail)
     }
   };
-  xhttp.open("GET", "messages.html", true);
+  xhttp.open("GET", "messages-template.html", true);
   xhttp.send();
 }
