@@ -13,6 +13,24 @@ a {
     color: #b4b0c7
 }
 
+.button {
+  background-color: #FFFFFF; /* Green */
+  border: none;
+  border-radius: 8px;
+  color: #000000;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #2C2F33; /* Green */
+  color: white;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="email"], 

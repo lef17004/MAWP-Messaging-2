@@ -45,6 +45,8 @@ Preston
 Whitney
 -------
 - CSS and button for darkmode 
+  - Button has been added to contentSettings.html
+  - CSS for darkmode is darkmode.css
 
 Aaron
 -----
