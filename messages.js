@@ -26,7 +26,7 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       
       db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
         backendGetMessages(conversationId, function(result) {
-          createMessage(result[], recieverId)
+          createMessage(result[result.length - 1], recieverId)
         })
       })
       
