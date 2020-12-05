@@ -4,6 +4,7 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
   
   //db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
     document.querySelector("#list").innerHTML = ""  
+    document.querySelector("#reciever").innerHTML = recieverEmail
     console.log(senderEmail)
     console.log(recieverEmail)
     backendGetMessages(conversationId, function(result) {
@@ -13,22 +14,30 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
         let timeBox = document.createElement("DIV")
         
         messageBox.className = "container"
+        timeBox.className = "container time"
         
+        let hours = message.time.getHours() + 1
+        let endStamp = " AM"
         
-        let time = message.time//toDate()//.getHours() + 1
+        if (hours > 12) {
+          hours -= 12
+          endStamp = " PM"
+        }
+        
+        let time = hours + ":" + (message.time.getMinutes() + 1) + endStamp
         
         
         
         messageBox.innerHTML = "<p>" + message.text + "</p>"
-        timeBox.innerHTML = "<span>"+ time + "</span>"
+        
         
         if (recieverId == message.recieverId) {
           messageBox.className = "container darker"
-          timeBox.className = "time-right"
+          timeBox.innerHTML = "<span class='time-right'>"+ time + "</span>"
         }
         else {
           messageBox.className = "container"
-          timeBox.className = "time-left"
+          timeBox.innerHTML = "<span class='time-left'>"+ time + "</span>"
         }
         
       
