@@ -10,16 +10,20 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       result.forEach(function(message) {
         console.log(message)
         let messageBox = document.createElement("DIV")
+        let timeBox = document.createElement("DIV")
+        
         messageBox.className = "container"
         
         
-        messageBox.innerHTML = "<p>"
         
-        if (recieverId == result.recieverId) {
-          messageBox.className = "u1 chat"
+        messageBox.innerHTML = "<p>" + message.text + "</p>"
+        timeBox.innerHTML = "M"
+        
+        if (recieverId == message.recieverId) {
+          messageBox.className = "container darker"
         }
         else {
-          messageBox.className = "u2 chat"
+          messageBox.className = "container"
         }
         
   
@@ -30,7 +34,9 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
         send(conversationId, recieverId, senderEmail, recieverEmail) 
       })
     })
-    
+//     <div class="container time">
+//     <span class="time-right">11:02</span>
+// </div>
     
   //});  
 }
