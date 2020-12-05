@@ -15,9 +15,13 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
         messageBox.className = "container"
         
         
-        let time = message.time
+        let time = firebase.firestore.Timestamp.fromDate(message.time)
+        time = time.getUTCHours();
+        
+        
+        
         messageBox.innerHTML = "<p>" + message.text + "</p>"
-        timeBox.innerHTML = "<span>"+ "time "+ "</span>"
+        timeBox.innerHTML = "<span>"+ time + "</span>"
         
         if (recieverId == message.recieverId) {
           messageBox.className = "container darker"
