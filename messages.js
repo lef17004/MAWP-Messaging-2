@@ -45,6 +45,12 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
         document.querySelector("#list").appendChild(timeBox)
       })
       
+      console.log(result[result.length - 1])
+      db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
+        
+        
+      }
+      
       document.querySelector("#send").addEventListener("click", function(){
         send(conversationId, recieverId, senderEmail, recieverEmail) 
       })
