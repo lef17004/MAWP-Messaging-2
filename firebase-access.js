@@ -205,6 +205,9 @@ function setUpConversation(senderId, recieverId, conversationId) {
         userIds: [senderId, recieverId],
         isRead: true,
   })
+  db.collection("conversations").doc(conversationId).update({
+    timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+  })
 }
 
 

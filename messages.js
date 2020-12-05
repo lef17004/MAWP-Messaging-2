@@ -48,6 +48,11 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       document.querySelector("#send").addEventListener("click", function(){
         send(conversationId, recieverId, senderEmail, recieverEmail) 
       })
+      
+      document.querySelector("#back").addEventListener("click", function(){
+        segueToConversations(auth.currentUser.uid, senderEmail)
+      })
+      
     })
 
     

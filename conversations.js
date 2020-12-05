@@ -62,3 +62,6 @@ function loadConversations(id, senderEmail) {
 }
 
 
+function back() {
+  segueToLogin()
+}
