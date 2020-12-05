@@ -15,28 +15,29 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
         messageBox.className = "container"
         
         
-        
+        let time = message.time
         messageBox.innerHTML = "<p>" + message.text + "</p>"
-        timeBox.innerHTML = "M"
+        timeBox.innerHTML = "<span>"+ "time "+ "</span>"
         
         if (recieverId == message.recieverId) {
           messageBox.className = "container darker"
+          timeBox.className = "time-right"
         }
         else {
           messageBox.className = "container"
+          timeBox.className = "time-left"
         }
         
-  
+      
         document.querySelector("#list").appendChild(messageBox)
+        document.querySelector("#list").appendChild(timeBox)
       })
       
       document.querySelector("#send").addEventListener("click", function(){
         send(conversationId, recieverId, senderEmail, recieverEmail) 
       })
     })
-//     <div class="container time">
-//     <span class="time-right">11:02</span>
-// </div>
+
     
   //});  
 }
