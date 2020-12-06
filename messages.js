@@ -7,8 +7,12 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
     document.querySelector("#reciever").innerHTML = recieverEmail
   
     backendGetMessages(conversationId, function(result) {
+      let count = 0 
       result.forEach(function(message) {
-        createMessage(message, recieverId)
+        if (count != result.length - 1) {
+          createMessage(message, recieverId)
+        }
+        count++
       })
       
       
