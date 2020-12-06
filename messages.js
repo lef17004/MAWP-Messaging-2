@@ -1,5 +1,6 @@
 let lastMessageId
 
+
 function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
   
   //db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
@@ -25,7 +26,8 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       })
       
       document.querySelector("#back").addEventListener("click", function(){
-        func = function(){}
+        console.log("back")
+        func = null
         segueToConversations(auth.currentUser.uid, senderEmail)
       })
       
@@ -65,7 +67,7 @@ function send(conversationId, recieverId, senderEmail, recieverEmail) {
 
 
 function createMessage(message, recieverId) {
-  console.log(message)
+ 
         let messageBox = document.createElement("DIV")
         let timeBox = document.createElement("DIV")
         
