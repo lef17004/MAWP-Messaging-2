@@ -27,12 +27,12 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       
       document.querySelector("#back").addEventListener("click", function(){
         console.log("back")
-        func = null
+        
         segueToConversations(auth.currentUser.uid, senderEmail)
       })
       
       
-      var func = db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
+      var query = db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
         backendGetLastMessage(conversationId, function(result) {
           
           //if (result[result.length - 1].text != lastMessageId) {
@@ -43,8 +43,9 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
           
           
         })
+        console.log(query)
       })
-      
+    
     })
 
     
