@@ -25,11 +25,12 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       })
       
       document.querySelector("#back").addEventListener("click", function(){
+        func = function(){}
         segueToConversations(auth.currentUser.uid, senderEmail)
       })
       
       
-      db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
+      var func = db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
         backendGetLastMessage(conversationId, function(result) {
           
           //if (result[result.length - 1].text != lastMessageId) {
