@@ -1,17 +1,18 @@
-
+let lastMessageId
 
 function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
   
   //db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
     document.querySelector("#list").innerHTML = ""  
     document.querySelector("#reciever").innerHTML = recieverEmail
-    console.log(senderEmail)
-    console.log(recieverEmail)
+  
     backendGetMessages(conversationId, function(result) {
       result.forEach(function(message) {
         createMessage(message, recieverId)
       })
       
+      
+      lastMessageId = result[result.length - 1].time
       console.log(result[result.length - 1])
       
       
@@ -26,7 +27,14 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       
       db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
         backendGetMessages(conversationId, function(result) {
-          createMessage(result[result.length - 1], recieverId)
+          
+          if (result[result.length - 1].time != lastMessageId) {
+            createMessage(result[result.length - 1], recieverId)
+            lastMessageId = result[result.length - 1].time
+          }
+          
+          
+          
         })
       })
       
