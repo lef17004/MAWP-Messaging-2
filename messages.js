@@ -12,7 +12,7 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       })
       
       
-      lastMessageId = result[result.length - 1].time
+      lastMessageId = result[result.length - 1].text
       console.log(result[result.length - 1])
       
       
@@ -26,12 +26,12 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       
       
       db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
-        backendGetMessages(conversationId, function(result) {
+        backendGetLastMessage(conversationId, function(result) {
           
-          if (result[result.length - 1].time != lastMessageId) {
+          //if (result[result.length - 1].text != lastMessageId) {
             createMessage(result[result.length - 1], recieverId)
-            lastMessageId = result[result.length - 1].time
-          }
+            lastMessageId = result[result.length - 1].text
+          //}
           
           
           
@@ -55,7 +55,7 @@ function send(conversationId, recieverId, senderEmail, recieverEmail) {
   backendSendMessage(auth.currentUser.uid, recieverId, conversationId, text)
   
   document.querySelector("#text").value = ""
-  loadMessages(conversationId, recieverId, senderEmail, recieverEmail)
+  //loadMessages(conversationId, recieverId, senderEmail, recieverEmail)
 }
 
 

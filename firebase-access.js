@@ -55,6 +55,23 @@ function backendGetMessages(conversationId, callbackFunc) {
   })
 }
 
+function backendGetLastMessage(conversationId, callbackFunc) {
+  db.collection("conversations").doc(conversationId).collection("messages").orderBy("timestamp", "desc").limit(1).get().then(function(results){
+    let messageList = []
+    results.forEach(function(doc) {
+      let message = {
+        text: doc.data().text,
+        time: doc.data().timestamp.toDate(),
+        senderId: doc.data().senderId,
+        recieverId: doc.data().receiverId
+      }
+      messageList.push(message)
+      
+    })
+    callbackFunc(messageList)
+  })
+}
+
 //This will call the callbackFunc for each conversation 
 function backendLoadConversations(id, callbackFunc) {
   console.log("BackendLoadConversations")
