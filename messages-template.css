@@ -1,13 +1,16 @@
   .container {
-    background-color:#7D7D7D;
+    background-color: rgba(0,0,0,0.5);
     border-radius: 5px;
     margin: 0 auto;
     max-width: 800px;
     padding: 0 20px;
+    color: white;
+    font-size:x-large;
+
   }
   
   .darker {
-    background-color:  #1982FC;
+    background-color: rgba(0,0,0,0.2);
     color: white;
   }
 
@@ -88,15 +91,10 @@ input[type="text"]
 {
   background: transparent;
   border: none;
-  transition: width 1s ease-in-out;
   padding: 10px;
   margin 10px, 10px, 10px, 10px;
-  border-radius:10px
-}
-
-input[type=text]:focus {
+  border-radius:10px;
   width: 80%;
-  border: none;
 }
 
 footer
@@ -117,4 +115,5 @@ html{
   border-radius: 20px;
   margin-top: 10px;
   margin-left: 10px;
+  position: absolute;
 }
