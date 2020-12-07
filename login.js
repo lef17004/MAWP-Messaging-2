@@ -52,3 +52,13 @@ function checkForRememberMe() {
   }
   
 }
+
+
+function forgotPassword() {
+  const usersEmail = prompt("Enter your email address:")
+  auth.sendPasswordResetEmail(usersEmail).then(function() {
+    alert("An email has been sent to " + usersEmail + " with a link to reset your password.")
+  }).catch(function(error) {
+    alert(error)
+  });
+}
