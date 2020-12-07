@@ -26,9 +26,14 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       })
       
       document.querySelector("#back").addEventListener("click", function(){
-        db.collection("conversations").doc(conversationId).update({
-          needsToRead: "none"
+        db.collection("conversations").doc(conversationId).get().then(function(result) {
+          if (result.data().needsToRead == auth.currentUser.uid) {
+            db.collection("conversations").doc(conversationId).update({
+              needsToRead: "none"
+            })
+          }
         })
+        
         unsubscribe()
         segueToConversations(auth.currentUser.uid, senderEmail)
       })
