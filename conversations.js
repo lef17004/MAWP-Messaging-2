@@ -1,4 +1,4 @@
-let conversationUnsubscribe
+
 
 function startConversation() {
   const recieverEmail = prompt("Email: ")
@@ -10,7 +10,7 @@ function startConversation() {
 function loadConversations(id, senderEmail) {
    backendLoadConversations(id, function(result, query) {
       // let conversation = document.createElement("Button")
-      conversationUnsubscribe = query
+      unsubscribe = query
       // conversation.innerHTML = result.email
       // document.querySelector("#list").appendChild(conversation)
       // document.querySelector("#list").appendChild(document.createElement("br"))
@@ -59,6 +59,7 @@ function loadConversations(id, senderEmail) {
      
      
      startOfListing.addEventListener("click", function(){
+       unsubscribe()
         segueToMessages(result.conversationId, result.recieverId, senderEmail, result.email)
      })
      
@@ -69,6 +70,7 @@ function loadConversations(id, senderEmail) {
 
 
 function back() {
+  unsubscribe()
   segueToLogin()
 }
 
