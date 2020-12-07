@@ -64,3 +64,15 @@
     margin-right: 20px;
     border-radius: 50%;
   }
+
+.footer-chat {
+  width: calc(65% - 66px);
+  height: 80px;
+  display:flex;
+  align-items: center;
+  position:absolute;
+  bottom: 0;
+  background-color: transparent;
+  border-top: 2px solid #EEE;
+  
+}
