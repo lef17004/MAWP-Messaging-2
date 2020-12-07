@@ -20,7 +20,8 @@ function login() {
       segueToConversations(auth.currentUser.uid, getForm().email)
     }
     else {
-      alert(error)
+      //alert(error)
+      document.getElementById("errorMessage").innerHTML = error;
     }
   })
 }
@@ -31,7 +32,8 @@ function signup() {
       login()
     }
     else {
-      alert(error)
+      //alert(error)
+      document.getElementById("errorMessage").innerHTML = error;
     }
   })
 }
@@ -59,6 +61,7 @@ function forgotPassword() {
   auth.sendPasswordResetEmail(usersEmail).then(function() {
     alert("An email has been sent to " + usersEmail + " with a link to reset your password.")
   }).catch(function(error) {
-    alert(error)
+    //alert(error)
+    document.getElementById("errorMessage").innerHTML = error;
   });
 }
