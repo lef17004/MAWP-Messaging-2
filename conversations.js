@@ -3,7 +3,13 @@
 function startConversation() {
   const recieverEmail = prompt("Email: ")
   backendCreateConversation(auth.currentUser.uid, recieverEmail, function(success) {
-    segueToConversations(auth.currentUser.uid)
+    if (success == false) {
+      alert("Email does not exist.")
+    }
+    else {
+      segueToConversations(auth.currentUser.uid)
+    }
+    
   })
 }
 

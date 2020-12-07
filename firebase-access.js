@@ -107,7 +107,7 @@ function backendCreateConversation(senderId, recieverEmail, callbackFunc) {
   getIdFrom(recieverEmail, function(recieverId) {
     calculateConversationId(senderId, recieverId, function(conversationId) {
       doesConversationExist(conversationId, function(conversationExists) {
-        if (!conversationExists) {
+        if (!conversationExists && recieverId != false) {
           setUpConversation(senderId, recieverId, conversationId)
           callbackFunc(true)
         }
