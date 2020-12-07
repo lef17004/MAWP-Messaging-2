@@ -47,7 +47,7 @@ function checkForRememberMe() {
     
   }
   if (localStorage.getItem("isChecked") == "true") {
-    document.querySelector("rememberMe").checked = true
+    document.getElementById("rememberMe").checked = true
     
   }
   
