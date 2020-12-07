@@ -6,7 +6,7 @@ function startConversation() {
 }
 
 function loadConversations(id, senderEmail) {
-   backendLoadConversations(id, function(result) {
+   backendLoadConversations(id, function(result, query) {
       // let conversation = document.createElement("Button")
       
       // conversation.innerHTML = result.email

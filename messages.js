@@ -1,4 +1,4 @@
-let lastMessageId
+
 let unsubscribe;
 
 function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
@@ -17,8 +17,8 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       })
       
       
-      lastMessageId = result[result.length - 1].text
-      console.log(result[result.length - 1])
+      // lastMessageId = result[result.length - 1].text
+      // console.log(result[result.length - 1])
       
       
       document.querySelector("#send").addEventListener("click", function(){
@@ -37,10 +37,10 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       unsubscribe = db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
         backendGetLastMessage(conversationId, function(result) {
           
-          //if (result[result.length - 1].text != lastMessageId) {
+          if (result.length != 0) {
             createMessage(result[result.length - 1], recieverId)
             lastMessageId = result[result.length - 1].text
-          //}
+          }
           
           
           
