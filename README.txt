@@ -28,18 +28,18 @@ password: testing000
 Michael
 -------
 - JS for Back Button - Done
-- Reloaded Messages 
+- Reloaded Messages - Done
 - Time since log in
 - Search Bar
 - Dark Mode
 - Add Setting Page in 
-- Read indicator 
+- Read indicator - Half Done
 
 Preston 
 -------
-- Remember Me (use cookies and local storage)
+- Remember Me (use cookies and local storage) - Done
 - Error Checking 
-- Forgot Password 
+- Forgot Password - Done
 
 
 Whitney

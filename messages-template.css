@@ -69,7 +69,7 @@
   }
 
 #send {
-  background: #B9DFFF;
+  background: #6879b3;
   color: #fff;
   border: 1px solid #eee;
   border-radius: 10px;
@@ -80,7 +80,7 @@
 }
 
 #send:hover {
-  background: #016ABC;
+  background: #414b70;
   color: #fff;
   border: 1px solid #eee;
   border-radius: 10px;
@@ -89,12 +89,13 @@
 
 input[type="text"]
 {
-  background: transparent;
   border: none;
   padding: 10px;
   margin 10px, 10px, 10px, 10px;
   border-radius:10px;
   width: 80%;
+  background-color: #8abde6;
+  color: white;
 }
 
 footer
@@ -111,9 +112,16 @@ html{
 }
 
 #back {
-  ackground-color: rgba(0,0,0,0.5);
-  border-radius: 20px;
+  background-color: #73b9b7;
+  border-radius: 10px;
   margin-top: 10px;
   margin-left: 10px;
-  position: absolute;
+  padding: 10px;
+  position: fixed;
+  border-color: transparent;
+  color: white;
+}
+
+::placeholder {
+  color: white;
 }
