@@ -69,3 +69,8 @@ function loadConversations(id, senderEmail) {
 function back() {
   segueToLogin()
 }
+
+
+function reload() {
+  
+}
