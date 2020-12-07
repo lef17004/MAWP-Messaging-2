@@ -5,7 +5,7 @@ function startConversation() {
   })
 }
 
-function loadConversations(id, senderEmail, isRead) {
+function loadConversations(id, senderEmail) {
    backendLoadConversations(id, function(result) {
       // let conversation = document.createElement("Button")
       
@@ -33,7 +33,10 @@ function loadConversations(id, senderEmail, isRead) {
      span2.innerHTML = result.email
      
      let p = document.createElement("P")
-     p.innerHTML = "Online __ Minutes ago"
+     if (result.isRead == auth.currentUser.uid) {
+       p.innerHTML = "New Message!!!"
+     }
+     
      
      
      
@@ -51,6 +54,7 @@ function loadConversations(id, senderEmail, isRead) {
      
      link.appendChild(mainDiv)
      startOfListing.appendChild(link)
+     
      
      startOfListing.addEventListener("click", function(){
         segueToMessages(result.conversationId, result.recieverId, senderEmail, result.email)
