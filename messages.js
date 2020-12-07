@@ -1,5 +1,5 @@
 let lastMessageId
-
+let unsubscribe;
 
 function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
   
@@ -27,11 +27,11 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
       
       document.querySelector("#back").addEventListener("click", function(){
         console.log("back")
-        
+        unsubscribe()
         segueToConversations(auth.currentUser.uid, senderEmail)
       })
       
-      let unsubscribe;
+      
       unsubscribe = db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
         backendGetLastMessage(conversationId, function(result) {
           
@@ -44,7 +44,7 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
           
         })
       })
-      unsubscribe()
+      
     
     })
 
@@ -75,7 +75,7 @@ function createMessage(message, recieverId) {
         messageBox.className = "container"
         timeBox.className = "container time"
         
-        let hours = message.time.getHours() + 1
+        let hours = message.time.getHours()
         let endStamp = " AM"
         
         if (hours > 12) {
@@ -83,7 +83,12 @@ function createMessage(message, recieverId) {
           endStamp = " PM"
         }
         
-        let time = hours + ":" + (message.time.getMinutes() + 1) + endStamp
+        let minutes = message.time.getMinutes()
+        if (minutes < 10) {
+          minutes = "0" + minutes
+        }
+  
+        let time = hours + ":" + minutes + endStamp
         
         
         
