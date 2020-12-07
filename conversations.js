@@ -1,3 +1,5 @@
+let conversationUnsubscribe
+
 function startConversation() {
   const recieverEmail = prompt("Email: ")
   backendCreateConversation(auth.currentUser.uid, recieverEmail, function(success) {
@@ -8,7 +10,7 @@ function startConversation() {
 function loadConversations(id, senderEmail) {
    backendLoadConversations(id, function(result, query) {
       // let conversation = document.createElement("Button")
-      
+      conversationUnsubscribe = query
       // conversation.innerHTML = result.email
       // document.querySelector("#list").appendChild(conversation)
       // document.querySelector("#list").appendChild(document.createElement("br"))
