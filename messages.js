@@ -31,8 +31,8 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
         segueToConversations(auth.currentUser.uid, senderEmail)
       })
       
-      
-      var query = db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
+      let unsubscribe;
+      unsubscribe = db.collection("conversations").doc(conversationId).onSnapshot(function(doc) {
         backendGetLastMessage(conversationId, function(result) {
           
           //if (result[result.length - 1].text != lastMessageId) {
@@ -43,8 +43,8 @@ function loadMessages(conversationId, recieverId, senderEmail, recieverEmail) {
           
           
         })
-        console.log(query)
       })
+      unsubscribe()
     
     })
 
