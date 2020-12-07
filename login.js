@@ -10,6 +10,12 @@ function login() {
       if (document.getElementById("rememberMe").checked) {
         localStorage.setItem("email", getForm().email)
         localStorage.setItem("password", getForm().password)
+        localStorage.setItem("isChecked", "true")
+      }
+      else {
+        localStorage.removeItem("email")
+        localStorage.removeItem("password")
+        localStorage.removeItem("isChecked")
       }
       segueToConversations(auth.currentUser.uid, getForm().email)
     }
@@ -32,12 +38,17 @@ function signup() {
 
 
 function checkForRememberMe() {
-  if (localStorage.getItem("email") != null) {
+  if (localStorage.getItem("email") !== null) {
     document.querySelector("#email").value = localStorage.getItem("email")
   }
   
-  if (localStorage.getItem("password") != null) {
+  if (localStorage.getItem("password") !== null) {
     document.querySelector("#psw").value = localStorage.getItem("password")
     
   }
+  if (localStorage.getItem("isChecked") == "true") {
+    document.querySelector("rememberMe").checked = true
+    
+  }
+  
 }
