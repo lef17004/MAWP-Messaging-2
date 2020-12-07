@@ -32,7 +32,8 @@ function backendSendMessage(senderId, recieverId, conversationId, text) {
     text: text
   }) 
   db.collection("conversations").doc(conversationId).update({
-    timestamp: firebase.firestore.Timestamp.fromDate(new Date())
+    timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
+    needsToRead: recieverId
   })
 }
 
@@ -87,7 +88,7 @@ function backendLoadConversations(id, callbackFunc) {
       }
       
       getEmailFrom(otherId, function(email) {
-        callbackFunc({email: email, conversationId: conversation.data().id, recieverId: otherId})
+        callbackFunc({email: email, conversationId: conversation.data().id, recieverId: otherId, isRead: conversation.data().needsToRead})
         
       })
       
