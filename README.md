@@ -47,7 +47,7 @@ Files are orginised based on names to keep things clean and easy to understand. 
     > This page lists all the conversations the user participates in.
     >   
     > ### <u>HTML:</u>   
-    >![MAWP-Messaging-2/3cab31b5-1971-4104-9724-ecb0ef53afa3-messages.JPG](conversations.JPG)
+    >![Image of a conversation](3cab31b5-1971-4104-9724-ecb0ef53afa3-conversations.JPG)
     >   
     > ### <u>JavaScript Functions</u>
     > 1. startConversation()   
