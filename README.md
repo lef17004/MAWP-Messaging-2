@@ -63,7 +63,7 @@ Files are orginised based on names to keep things clean and easy to understand. 
     > This page displays the content of a chosen conversation.
     >   
     > ### <u>HTML:</u>
-    >![](messages.JPG)
+    >![Image of messages](3cab31b5-1971-4104-9724-ecb0ef53afa3-messages.JPG)
     >   
     > ### <u>JavaScript Functions</u>
     > 1. loadMessages()   
